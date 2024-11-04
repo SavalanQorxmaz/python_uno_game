@@ -19,6 +19,9 @@ class Card:
     def color(self):
         return colors[self._color]
 
+    @property
+    def number(self):
+        return self._number
     
     def __str__(self):
         return f'{colors[self._color]}{self._number}{colors['RESET']}'
