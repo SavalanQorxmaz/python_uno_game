@@ -1,7 +1,6 @@
 import itertools
 import random
 from card import Card
-from gamer import Gamer
 
 
 # Kartlarin hazirlanmasi

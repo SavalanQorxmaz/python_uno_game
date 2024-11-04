@@ -1,10 +1,16 @@
 import random
 from card import Card
+from all_cards import f_all_cards
+allowed_cards = set(f_all_cards())
+# [print(f'{x}') for x in allowed_cards]
 
 class Gamer:
     def __init__(self, *, nick: str):
         self._nick = nick.capitalize()
+        
         self._cards = set()
+        for _ in range(7):
+            self.cards.add(allowed_cards.pop())
 
     @property
     def nick(self):
