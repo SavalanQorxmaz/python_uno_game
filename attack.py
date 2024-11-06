@@ -6,11 +6,11 @@ from take_put import f_take_from_new, f_put_to_old, old_cards
 def f_attack(*, gamer:Gamer):
     last = old_cards[-1]
     last_color = last.color
-    last_number = last.number
+    last_symbol = last.symbol
     cards = list(gamer.cards)
     print(f'Oyuncu: {gamer} Elindeki kartlar:{cards}')
     def f_check_if_allow(x:Card):
-            if x.color == last_color or x.number == last_number:
+            if x.color == last_color or x.symbol == last_symbol:
                 return True
             return False
     allowed_cards = [*filter(f_check_if_allow, cards)]

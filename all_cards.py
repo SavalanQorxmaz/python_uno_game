@@ -5,12 +5,21 @@ from card import Card
 
 # Kartlarin hazirlanmasi
 all_cards = [
-                [[Card(color=color, number=i)] 
-                if i == 0  
-                else [Card(color=color, number=i),Card(color=color, number=i)]
-                for i in range(10)]
-                for color in('red', 'green', 'yellow', 'blue')
+                [
+                    [Card(color=color, symbol=x)] 
+                    if x == '0' 
+                    else [Card(color=color, symbol=x), Card(color=color, symbol=x)]
+                    for x in [*map(str,[*range(10)]), 'pass', 'reverse', '+2']
                 ]
+                    for color in('red', 'green', 'yellow', 'blue')
+                ] 
+
+        
+            
 all_cards = [[*itertools.chain.from_iterable(x)] for x in all_cards]
+all_cards.extend([[Card(color='uni', symbol='unicolor+4'), Card(color='uni', symbol='unicolor')]
+                    for _ in range(4)
+                    ] ) 
 all_cards = [*itertools.chain.from_iterable(all_cards)]
+print(all_cards)
 random.shuffle(all_cards)
