@@ -20,6 +20,7 @@ if __name__ == '__main__':
     last_card = None
     current_gamer = None
     current_index = None
+    already_done = True
     while not finish:
         [print(f'{gamer.nick}: {gamer.cards}') for gamer in gamers]
         if not old_cards:
@@ -30,16 +31,36 @@ if __name__ == '__main__':
             current_index = gamers.index(current_gamer)
         last_card = old_cards[-1]
         print(f'Yere son acilan kart: {last_card}')
-        attack_result = f_attack(gamer=current_gamer)
+        attack_result = f_attack(gamer=current_gamer, already_done=already_done)
         if attack_result == 'win':   
             print(f'Winner: {current_gamer}')
             finish = True
         elif attack_result == 'next':
-            if current_index == len(gamers)-1:
-                current_index = 0
-            else:
-                current_index += 1
+            current_index = (current_index + 1) % len(gamers)
             current_gamer = gamers[current_index]
+        elif attack_result == 'pass':
+            current_index = (current_index + 2) % len(gamers)
+            current_gamer = gamers[current_index]
+        elif attack_result == 'reverse':
+            gamers.reverse()
+            current_index = (len(gamers) - current_index ) % len(gamers)
+            current_gamer = gamers[current_index]
+        elif attack_result == 'unicolor':
+            current_index = (current_index + 1) % len(gamers)
+            current_gamer = gamers[current_index]
+        elif attack_result == '+2':
+            current_index = (current_index + 1) % len(gamers)
+            current_gamer = gamers[current_index]
+            already_done = False
+        elif attack_result == 'unicolor+4':
+            current_index = (current_index + 1) % len(gamers)
+            current_gamer = gamers[current_index]
+            already_done = False
+        elif attack_result == 'already_done':
+            current_index = (current_index + 1) % len(gamers)
+            current_gamer = gamers[current_index]
+            already_done = True
+        
         time.sleep(2)
             
 [print(f'{gamer.nick}: {gamer.cards}') for gamer in gamers]
