@@ -26,6 +26,8 @@ if __name__ == '__main__':
         if not old_cards:
             temp = f_take_from_new()
             f_put_to_old(temp)
+            if temp.symbol == 'unicolor+4' or temp.symbol == '+2':
+                already_done = False
         if not current_gamer:
             current_gamer = random.choice(gamers)
             current_index = gamers.index(current_gamer)

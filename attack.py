@@ -61,7 +61,7 @@ def f_attack(*, gamer:Gamer, already_done=True):
                     new_cards.append(new_card)
             
             print(f'Bazardan goturduyu kartlar: {new_cards}')  
-        elif last_symbol == '+4':
+        elif last_symbol == 'unicolor+4':
             new_cards = []
             for _ in range(4):
                 new_card = f_take_from_new()
