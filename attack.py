@@ -34,7 +34,7 @@ def f_attack(*, gamer:Gamer, already_done=True):
         else:
             print(f'Oynanila bilecek kartlar: {allowed_cards}')
             selected = random.choice(allowed_cards)
-            print(f'Oynanilan kart{selected}')
+            print(f'Oynanilan kart: {selected}')
             gamer.cards.discard(selected)
             f_put_to_old(selected)
             if len(gamer.cards) == 0:
@@ -51,24 +51,17 @@ def f_attack(*, gamer:Gamer, already_done=True):
                 return 'reverse'
             return 'next'
     else:
+        def take_cards(count):
+            new_cards = []
+            for _ in range(count):
+                new_card = f_take_from_new()
+                if new_card:
+                    cards.append(new_card)
+                    gamer.cards.add(new_card)
+                    new_cards.append(new_card)
+            print(f'Bazardan goturduyu kartlar: {new_cards}')    
         if last_symbol == '+2':
-            new_cards = []
-            for _ in range(2):
-                new_card = f_take_from_new()
-                if new_card:
-                    cards.append(new_card)
-                    gamer.cards.add(new_card)
-                    new_cards.append(new_card)
-            
-            print(f'Bazardan goturduyu kartlar: {new_cards}')  
+            take_cards(2)
         elif last_symbol == 'unicolor+4':
-            new_cards = []
-            for _ in range(4):
-                new_card = f_take_from_new()
-                if new_card:
-                    cards.append(new_card)
-                    gamer.cards.add(new_card)
-                    new_cards.append(new_card)
-            
-            print(f'Bazardan goturduyu kartlar: {new_cards}') 
+            take_cards(4)
         return 'already_done'

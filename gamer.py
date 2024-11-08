@@ -3,7 +3,6 @@ from take_put import f_take_from_new
 class Gamer:
     def __init__(self, *, nick: str):
         self._nick = nick.capitalize()
-        
         self._cards = set()
         for _ in range(7):
             new_card = f_take_from_new()
@@ -18,6 +17,8 @@ class Gamer:
 
     @property
     def cards(self):
+        if self._cards is None:
+            return None
         return self._cards
     @cards.setter
     def cards(self, card=None):

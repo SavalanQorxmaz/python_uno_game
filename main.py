@@ -35,7 +35,7 @@ if __name__ == '__main__':
         print(f'Yere son acilan kart: {last_card}')
         attack_result = f_attack(gamer=current_gamer, already_done=already_done)
         if attack_result == 'win':   
-            print(f'Winner: {current_gamer}')
+            print(f'Qalib: {current_gamer}')
             finish = True
         elif attack_result == 'next':
             current_index = (current_index + 1) % len(gamers)
